@@ -8,13 +8,13 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.phantom.SkitlMod.item.Moditems;
+import net.phantom.SkitlMod.block.ModBlocks;
+import net.phantom.SkitlMod.item.ModCreativeModTabs;
+import net.phantom.SkitlMod.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -29,7 +29,10 @@ public class SkitlMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // register
-        Moditems.register(modEventBus);
+        ModCreativeModTabs.register(modEventBus);
+
+        ModBlocks.Register(modEventBus);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -42,7 +45,7 @@ public class SkitlMod {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(Moditems.Cloud);
+            event.accept(ModItems.CLOUD);
         }
     }
 

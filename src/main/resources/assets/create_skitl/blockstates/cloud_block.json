@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_skitl:block/cloud_block"
+    }
+  }
+}
