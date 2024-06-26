@@ -10,6 +10,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.phantom.SkitlMod.SkitlMod;
+import net.phantom.SkitlMod.block.custom.CloudBlock;
+import net.phantom.SkitlMod.block.custom.NavTableBlock;
 import net.phantom.SkitlMod.item.ModItems;
 
 import java.util.function.Supplier;
@@ -19,10 +21,14 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SkitlMod.MOD_ID);
 
-    // cloud block
+    //blocks
     public static final RegistryObject<Block> CLOUD_BLOCK = registryObject("cloud_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.POWDER_SNOW).noCollission().replaceable().instabreak()));
+            () -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.POWDER_SNOW).noCollission().replaceable().instabreak()));
 
+    public static final RegistryObject<Block> NavTable = registryObject("nav_table",
+            () -> new NavTableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
+    // functions
     private static <T extends Block> RegistryObject<T> registryObject(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

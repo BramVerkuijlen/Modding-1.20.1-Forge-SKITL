@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.phantom.SkitlMod.block.ModBlocks;
+import net.phantom.SkitlMod.effect.ModEffects;
 import net.phantom.SkitlMod.item.ModCreativeModTabs;
 import net.phantom.SkitlMod.item.ModItems;
 import org.slf4j.Logger;
@@ -28,11 +29,17 @@ public class SkitlMod {
     public SkitlMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // register
+        // CreativeTabs
         ModCreativeModTabs.register(modEventBus);
 
+        // Blocks
         ModBlocks.Register(modEventBus);
+
+        // Items
         ModItems.register(modEventBus);
+
+        // Effects
+        ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
